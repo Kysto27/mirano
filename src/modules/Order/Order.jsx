@@ -9,9 +9,13 @@ export const Order = () => {
 
   const dispatch = useDispatch();
 
-  const handleOrderClose = () => {
-    dispatch(toggleOrder())
-  }
+  const handleOrderClose = (e) => {
+    dispatch(toggleOrder());
+  };
+
+  const stopPropagation = (e) => {
+    e.stopPropagation();
+  };
 
   if (!isOpen) {
     return null;
@@ -32,7 +36,7 @@ export const Order = () => {
   } else {
     return (
       <div className='order' onClick={handleOrderClose}>
-        <div className='order__wrapper'>
+        <div className='order__wrapper' onClick={stopPropagation}>
           <h2 className='order__title'>Оформить заказ</h2>
           <form className='order__form' id='order'>
             <fieldset className='order__fieldset'>
